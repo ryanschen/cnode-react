@@ -6,38 +6,41 @@ body
   -moz-osx-font-smoothing: grayscale
   max-width: 750px
 
-code 
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
+ul,li
+  margin: 0
+  padding: 0
 
-.App 
-  text-align: center
+li
+  list-style: none
 
-.App-logo 
-  animation: App-logo-spin infinite 20s linear
-  height: 40vmin
-
-.App-header 
-  background-color: #282c34
-  min-height: 100vh
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  font-size: calc(10px + 2vmin)
-  color: white
-
-.sass-test
-  color: $theme
-  & ~ a
-    width: 100%
-
-.App-link 
-  color: #61dafb
-
-@keyframes App-logo-spin 
-  from 
-    transform: rotate(0deg)
-  
-  to 
-    transform: rotate(360deg)
-  
+.app
+  .app-header
+    height: 70px
+    background-color: #2196f3
+    color: #fff
+    display: flex
+    align-items: center
+    justify-content: center
+    h1
+      margin: 0
+  .app-tabs
+    height: 46px
+    background-color: #2196f3
+    color: #fff
+    font-size: 18px
+    ul
+      display: flex
+      align-items: center
+      height: 100%
+      li
+        flex: 1
+        height: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+        box-sizing: border-box
+        border-bottom: 2px solid #2196f3
+        &.active
+          border-color: red
+          font-size: 120%
+          font-weight: 700

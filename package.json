@@ -2,6 +2,7 @@
   "name": "cnode-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/cnode-react",
   "scripts": {
     "dev": "npm run start",
     "start": "react-app-rewired start",

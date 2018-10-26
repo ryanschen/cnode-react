@@ -5,7 +5,7 @@ import './assets/styles/App.sass';
 import $ from './utils';
 import Cell from './views/Cell'
 
-export default class App extends Component {
+export default class extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -31,18 +31,14 @@ export default class App extends Component {
   }
 
   tabsClickHandle = async (item, index, e) => {
-    console.log(item, index)
+    // console.log(item, index)
     // this.setState(prevState => ({
     //   activeClass: parseInt(e.target.dataset.index)
     // }))
     const response = await $.get('https://cnodejs.org/api/v1/topics', Object.assign({},
-      item.type
-        ? {
-          tab: item.type
-        }
-        : {}
-      ))
-        .catch(error => { console.log(error); })
+      item.type ? { tab: item.type } : {}
+    ))
+      .catch(error => { console.log(error); })
     console.log(response);
     this.setState({
       activeClass: index,
@@ -63,7 +59,7 @@ export default class App extends Component {
             {this.state.tabsList.map((item, index) =>
               <li
                 key={index}
-                onClick={e => this.tabsClickHandle(item, index, e)}
+                onClick={() => this.tabsClickHandle(item, index)}
                 className={index === this.state.activeClass ? 'active' : ''}
               >{item.name}</li>
             )}
@@ -79,38 +75,38 @@ export default class App extends Component {
 }
 
 
-// import { Button } from 'antd-mobile';
-// class TabItem extends Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       activeClass: 0
-//     }
-//   }
+// // import { Button } from 'antd-mobile';
+// // class TabItem extends Component {
+// //   constructor (props) {
+// //     super(props)
+// //     this.state = {
+// //       activeClass: 0
+// //     }
+// //   }
 
-//   tabsClickHandle = () => {
-//     console.log(this.state.activeClass);
-//   }
+// //   tabsClickHandle = () => {
+// //     console.log(this.state.activeClass);
+// //   }
 
-//   render () {
-//     return (
-//       <li
-//         onClick={this.tabsClickHandle}
-//         className={}
-//       >{this.props.tabName}</li>
-//     )
-//   }
-// }
+// //   render () {
+// //     return (
+// //       <li
+// //         onClick={this.tabsClickHandle}
+// //         className={}
+// //       >{this.props.tabName}</li>
+// //     )
+// //   }
+// // }
 
-// class TabsList extends Component {
-//   render () {
-//     const items = this.props.items;
-//     const tabItems = items.map((tabName) =>
-//       <TabItem key={tabName} tabName={tabName} />
-//     );
+// // class TabsList extends Component {
+// //   render () {
+// //     const items = this.props.items;
+// //     const tabItems = items.map((tabName) =>
+// //       <TabItem key={tabName} tabName={tabName} />
+// //     );
 
-//     return (
-//       <ul>{tabItems}</ul>
-//     )
-//   }
-// }
+// //     return (
+// //       <ul>{tabItems}</ul>
+// //     )
+// //   }
+// // }

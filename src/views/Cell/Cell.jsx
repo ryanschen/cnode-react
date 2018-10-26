@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import timeago from 'timeago.js'
 
 export default class Home extends Component {
   render () {
+    const timeagoInstance = timeago();
     return (
       <ul>
         {this.props.list.map((item, index) =>
@@ -30,7 +32,7 @@ export default class Home extends Component {
               <p className="item-title">{item.title}</p>
               <p className="item-count">
                 <span>{item.reply_count}/{item.visit_count}</span>
-                <span>{item.last_reply_at}</span>
+                <span>{timeagoInstance.format(item.last_reply_at, 'zh_CN')}</span>
               </p>
             </div>
           </div>

@@ -1,112 +1,43 @@
-import React, { Component } from 'react';
-// import classnames from 'classnames'
-// import logo from './assets/images/logo.svg';
-import './assets/styles/App.sass';
-import $ from './utils';
-import Cell from './views/Cell'
+import React, { Component } from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Nav from '@/components/Nav'
+import MyRouters from '@/router'
+import '@/assets/styles/App.sass'
 
 export default class extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      tabsList: [
-        { name: '首页', type: '' },
-        { name: '精华', type: 'good' },
-        { name: '分享', type: 'share' },
-        { name: '问答', type: 'ask' },
-        { name: '招聘', type: 'job' }
-      ],
-      activeClass: 0,
-      list: []
-    }
-  }
-
-  async componentDidMount () {
-    const response = await $.get('https://cnodejs.org/api/v1/topics')
-      .catch(error => { console.log(error);})
-    console.log(response);
-    this.setState({
-      list: response.data
-    })
-  }
-
-  tabsClickHandle = async (item, index, e) => {
-    // console.log(item, index)
-    // this.setState(prevState => ({
-    //   activeClass: parseInt(e.target.dataset.index)
-    // }))
-    const response = await $.get('https://cnodejs.org/api/v1/topics', Object.assign({},
-      item.type ? { tab: item.type } : {}
-    ))
-      .catch(error => { console.log(error); })
-    console.log(response);
-    this.setState({
-      activeClass: index,
-      list: response.data
-    })
-  }
-
   render () {
+    const navList = [
+      { path: 'home', name: '首页' },
+      { path: 'news', name: '新手入门' },
+      { path: 'about', name: '关于' }
+    ]
     return (
-      <div className="app">
-        <header className="app-header">
-          <h1>CNode JS</h1>
-        </header>
-
-        <section className="app-tabs">
-          {/* <TabsList items={this.state.tabsList} /> */}
-          <ul>
-            {this.state.tabsList.map((item, index) =>
-              <li
-                key={index}
-                onClick={() => this.tabsClickHandle(item, index)}
-                className={index === this.state.activeClass ? 'active' : ''}
-              >{item.name}</li>
-            )}
-          </ul>
-        </section>
-
-        <section className="app-content">
-          <Cell list={this.state.list}/>
-        </section>
-      </div>
-    );
+      <Router basename="/">
+        <div className="app">
+          <Nav navList={navList} title="CNode JS"/>
+          <MyRouters/>
+        </div>
+        {/* <ul>
+          <li>
+            <Link to="/home">home</Link>
+          </li>
+          <li>
+            <Link
+              to={{
+                pathname: '/news',
+                search: '?sort=name',
+                hash: '#the-hash',
+                state: { fromDashboard: true }
+              }}
+            >news</Link>
+          </li>
+          <li>
+            <Link exact to="/about" activeStyle={{ color: 'red' }}>about</Link>
+          </li>
+        </ul>
+        
+        <hr/> */}
+      </Router>
+    )
   }
 }
-
-
-// // import { Button } from 'antd-mobile';
-// // class TabItem extends Component {
-// //   constructor (props) {
-// //     super(props)
-// //     this.state = {
-// //       activeClass: 0
-// //     }
-// //   }
-
-// //   tabsClickHandle = () => {
-// //     console.log(this.state.activeClass);
-// //   }
-
-// //   render () {
-// //     return (
-// //       <li
-// //         onClick={this.tabsClickHandle}
-// //         className={}
-// //       >{this.props.tabName}</li>
-// //     )
-// //   }
-// // }
-
-// // class TabsList extends Component {
-// //   render () {
-// //     const items = this.props.items;
-// //     const tabItems = items.map((tabName) =>
-// //       <TabItem key={tabName} tabName={tabName} />
-// //     );
-
-// //     return (
-// //       <ul>{tabItems}</ul>
-// //     )
-// //   }
-// // }

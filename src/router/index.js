@@ -6,13 +6,21 @@ import {
 } from 'react-router-dom'
 import NotFound from '@/views/NotFound'
 import Home from '@/views/Home'
-import News from '@/views/News'
+import Getstart from '@/views/Getstart'
 import About from '@/views/About'
+
+// import Loadable from 'react-loadable'
+
+// const DelayLoading = () => (<div>loading ...</div>)
+
+// const Home = Loadable({ loader: () => import('@/views/Home'), loading: DelayLoading, delay: 3000 })
+// const Getstart = Loadable({ loader: () => import('@/views/Getstart'), loading: DelayLoading, delay: 3000 })
+// const About = Loadable({ loader: () => import('@/views/About'), loading: DelayLoading, delay: 3000 })
 
 const routes = [
   { path: '/', exact: true, redirect: '/home' },
   { path: '/home', component: Home },
-  { path: '/news', component: News },
+  { path: '/getstart', component: Getstart },
   { path: '/about', component: About },
   { path: '*', component: NotFound }
 ];

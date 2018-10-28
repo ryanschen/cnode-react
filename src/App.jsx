@@ -13,7 +13,7 @@ const navList = [
 export default class extends Component {
   render () {
     return (
-      <BrowserRouter basename="/">
+      <BrowserRouter basename="/cnode-react">
         <div className="app">
           <Nav navList={navList} title="CNode JS"/>
           <Routers/>

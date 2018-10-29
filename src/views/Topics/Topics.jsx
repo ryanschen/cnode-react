@@ -44,7 +44,7 @@ export default class extends Component {
   render () {
     return (
       <div>
-        <section className="home-tabs">
+        <section className="topics-tabs">
           {/* <TabsList items={this.state.tabsList} /> */}
           <ul>
             {tabsList.map((item, index) =>

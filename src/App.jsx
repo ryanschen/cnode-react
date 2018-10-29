@@ -5,7 +5,7 @@ import Routers from '@/router'
 import '@/assets/styles/App.sass'
 
 const navList = [
-  { path: 'home', name: '首页' },
+  { path: 'topics', name: '首页' },
   { path: 'getstart', name: '新手入门' },
   { path: 'about', name: '关于' },
   { path: 'rydemo', name: '组件demo' }

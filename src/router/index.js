@@ -34,6 +34,7 @@ const routes = [
   { path: '/home', component: () => import(`@/views/Home`) },
   { path: '/getstart', component: () => import(`@/views/Getstart`) },
   { path: '/about', component: () => import(`@/views/About`) },
+  { path: '/rydemo', component: () => import(`@/views/Rydemo`) },
   { path: '*', component: () => import(`@/views/NotFound`) }
   // { path: '/', exact: true, redirect: '/home' },
   // { path: '/home', component: Home },

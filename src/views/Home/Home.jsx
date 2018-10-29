@@ -24,9 +24,7 @@ export default class extends Component {
     Toast.loading('加载中..', 0)
     const response = await $.get('https://cnodejs.org/api/v1/topics')
       .catch(error => { console.log(error); })
-    this.setState({
-      list: response.data
-    })
+    response.data && this.setState({ list: response.data })
   }
 
   tabsClickHandle = async (item, index, e) => {
@@ -40,10 +38,7 @@ export default class extends Component {
     ))
       .catch(error => { console.log(error); })
     console.log(response)
-    this.setState({
-      activeClass: index,
-      list: response.data
-    })
+    response.data && this.setState({ activeClass: index, list: response.data })
   }
 
   render () {

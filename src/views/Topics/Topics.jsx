@@ -15,6 +15,7 @@ export default class extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      tab: '',
       activeClass: 0,
       list: []
     }
@@ -22,30 +23,30 @@ export default class extends Component {
 
   async componentDidMount() {
     Toast.loading('加载中..', 0)
-    const response = await $.get('https://cnodejs.org/api/v1/topics')
+    const response = await $.get('https://cnodejs.org/api/v1/topics', {
+      tab: this.state.tab,
+      page: 1,
+      limit: 10
+    })
       .catch(error => { console.log(error); })
     response.data && this.setState({ list: response.data })
   }
 
   tabsClickHandle = async (item, index, e) => {
-    // console.log(item, index)
-    // this.setState(prevState => ({
-    //   activeClass: parseInt(e.target.dataset.index)
-    // }))
+    if (this.state.activeClass === index) return
     Toast.loading('加载中..', 0)
     const response = await $.get('https://cnodejs.org/api/v1/topics', Object.assign({},
-      item.type ? { tab: item.type } : {}
+      item.type ? { tab: item.type, page: 1, limit: 10 } : { page: 1, limit: 10 }
     ))
       .catch(error => { console.log(error); })
     console.log(response)
-    response.data && this.setState({ activeClass: index, list: response.data })
+    response.data && this.setState({ activeClass: index, list: response.data, tab: item.type })
   }
 
   render () {
     return (
       <div>
         <section className="topics-tabs">
-          {/* <TabsList items={this.state.tabsList} /> */}
           <ul>
             {tabsList.map((item, index) =>
               <li

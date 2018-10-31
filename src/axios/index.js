@@ -4,16 +4,13 @@ import { Toast } from 'antd-mobile'
 const axiosInstance = axios.create({
   timeout: 60000
 })
+axiosInstance.defaults.baseURL = 'https://cnodejs.org/api/v1'
 // 统一处理ajax失败
 axiosInstance.interceptors.response.use(function (res) {
   Toast.hide()
   const response = res.data
-  if (
-    response.status !== '100' &&
-    typeof response.errorMessges !== 'undefined' &&
-    Object.prototype.toString.call(response.errorMessges) === '[object Array]'
-  ) {
-    alert(response.errorMessges[0].message.trim())
+  if (!response.success) {
+    alert(JSON.stringify(response))
     return
   }
   return res

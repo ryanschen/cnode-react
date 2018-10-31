@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import $ from '@/utils'
-import { REQ_URL } from '@/config'
 import timeago from 'timeago.js'
 import { Toast } from 'antd-mobile'
 
@@ -21,7 +20,7 @@ export default class extends Component {
   async componentDidMount () {
     const id = this.props.match.params.id
     Toast.loading('加载中..', 0)
-    const response = await $.get(`${REQ_URL}/topic/${id}`)
+    const response = await $.get(`/topic/${id}`)
       .catch(error => {console.log(error);})
     console.log(response)
     this.setState({

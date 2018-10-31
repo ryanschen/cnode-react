@@ -6,6 +6,9 @@ import FastClick from 'fastclick'
 import 'normalize.css'
 import App from './App.jsx'
 
+// const VConsole = require('vconsole')
+// new VConsole()
+
 if ('ontouchstart' in window) {
   FastClick.attach(document.body)
 }
